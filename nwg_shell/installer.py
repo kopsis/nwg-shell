@@ -20,6 +20,7 @@ import os
 import subprocess
 import sys
 import time
+import stat
 from shutil import copy, copy2
 
 from nwg_shell.__about__ import __version__
@@ -63,6 +64,7 @@ def copy_folder(src, dst, hyprland=False):
         if hyprland or "hyprland" not in item:
             print(" {}".format(item))
             copy2(os.path.join(src, item), os.path.join(dst, item))
+            os.chmod(os.path.join(dst, item), stat.S_IREAD | stat.S_IWRITE)
 
 
 def copy_from_skel(name, folder="config", skip_confirmation=False, hyprland=False):
