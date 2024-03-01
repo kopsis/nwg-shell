@@ -107,6 +107,7 @@ def restore(name, folder="config"):
         try:
             if not os.path.isfile(dst_path):
                 copy(src_path, dst_path, follow_symlinks=False)
+                os.chmod(dst_path, stat.S_IREAD | stat.S_IWRITE)
                 response.append("Copied '{}'".format(dst_path))
 
         except Exception as e:
@@ -297,6 +298,7 @@ def main():
         if not os.path.isfile(bcg):
             print("Copying default background")
             copy(os.path.join(dir_name, "skel", "stuff", "azotebg"), bcg)
+            os.chmod(bcg, stat.S_IREAD | stat.S_IWRITE)
             os.rename(bcg, os.path.join(os.getenv("HOME"), ".azotebg"))
             copy(os.path.join(os.getenv("HOME"), ".azotebg"), os.path.join(os.getenv("HOME"), ".azotebg-hyprland"))
 
