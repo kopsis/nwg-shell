@@ -1,7 +1,7 @@
 { lib
 , fetchFromGitHub
 , python310Packages
-, hyprlandSupport ? false
+, hyprlandSupport ? true
 }:
 
 
@@ -18,7 +18,7 @@ in
 
 python310Packages.buildPythonApplication rec {
   pname = "nwg-shell";
-  version = "0.5.32-3";
+  version = "0.5.33";
 
   src = fs.toSource {
     root = ./.;
