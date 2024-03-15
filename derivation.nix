@@ -13,7 +13,6 @@ let
       (fs.unions [
         (fs.maybeMissing ./result)
         (fs.fileFilter (file: file.hasExt "nix") ./.)
-        ./nix
       ]);
 in
 

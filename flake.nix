@@ -1,5 +1,5 @@
 {
-  inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
+  #inputs.nixpkgs.url = "github:nixos/nixpkgs/nixos-unstable";
   inputs.flake-utils.url = "github:numtide/flake-utils";
   outputs = { self, nixpkgs, flake-utils, ... }:
     let
@@ -9,12 +9,12 @@
           appliedOverlay = self.overlays.default pkgs pkgs;
         in
         {
-          packages.myPackage = appliedOverlay.myPackage;
+          packages.nwg-shell = appliedOverlay.nwg-shell;
         };
     in
-    flake-utils.lib.eachDefaultSystem out // {
+    flake-utils.lib.eachDefaultSystem out // { # update out with following attrset
       overlays.default = final: prev: {
-        myPackage = final.callPackage ./derivation.nix { };
+        nwg-shell = final.callPackage ./derivation.nix { };
       };
     };
 }
